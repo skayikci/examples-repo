@@ -34,3 +34,6 @@ activemq-data
 .settings
 RemoteSystemsTempFiles
 .idea
+*/.idea
+*/.gradle
+*/gradle
