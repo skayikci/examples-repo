@@ -37,3 +37,4 @@ RemoteSystemsTempFiles
 */.idea
 */.gradle
 */gradle
+*/build
