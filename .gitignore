@@ -57,6 +57,7 @@ build/
 ### IntelliJ IDEA ###
 *.iws
 *.iml
+*/*.iml
 *.ipr
 out/
 
