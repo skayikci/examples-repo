@@ -13,8 +13,10 @@ public class UserClient {
         this.url = url;
     }
 
-    public UserDto callProducer() {
-        ResponseEntity<UserDto> responseEntity = new RestTemplate().getForEntity(this.url, UserDto.class);
-        return responseEntity.getBody();
+    public UserDto[] callProducer() {
+        ResponseEntity<UserDto[]> responseEntity = new RestTemplate().getForEntity(this.url, UserDto[].class);
+        UserDto[] userDtos = new UserDto[1];
+        userDtos[0] = responseEntity.getBody()[0];
+        return userDtos;
     }
 }

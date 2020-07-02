@@ -20,7 +20,7 @@ public class PactQueryParameterTest extends ConsumerPactTest {
     @Pact(provider = "UserProvider", consumer = "UserProviderConsumer")
     public RequestResponsePact createPact(PactDslWithProvider builder) {
         Map<String, String> headers = new HashMap<String, String>();
-        headers.put("Content-Type", "application/json;charset=UTF-8");
+        headers.put("Content-Type", "application/json");
 
         return builder
                 .given("")
@@ -30,10 +30,10 @@ public class PactQueryParameterTest extends ConsumerPactTest {
                 .willRespondWith()
                 .headers(headers)
                 .status(200)
-                .body("{\n" +
+                .body("[{\n" +
                         "    \"name\": \"Name\",\n" +
                         "    \"lastName\": \"LastName\"\n" +
-                        "}")
+                        "}]")
 
                 .toPact();
     }
@@ -50,10 +50,10 @@ public class PactQueryParameterTest extends ConsumerPactTest {
 
     @Override
     protected void runTest(MockServer mockServer, PactTestExecutionContext context) {
-        List<UserDto> result = Collections
-                .singletonList(new UserClient(mockServer.getUrl() + "/users/Name").callProducer());
-        result.forEach(userDto -> {
+        UserDto[] result = (new UserClient(mockServer.getUrl() + "/users/Name").callProducer());
+        for (UserDto userDto :
+                result) {
             assertEquals(userDto.getName(), "Name");
-        });
+        }
     }
 }
