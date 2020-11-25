@@ -1,0 +1,10 @@
+<ul *ngFor="let movie of movies$ | async;">
+  <li>{{movie.director}}</li>
+  <li>{{movie.imageUrl}}</li>
+  <li>{{movie.name}}</li>
+  <li>{{movie.producer}}</li>
+  <li>{{movie.releaseYear}}</li>
+  <li>
+    <a class="btn-primary" ngbButton [routerLink]="'/admin/movie/edit'" [state]="movie">Edit</a>
+  </li>
+</ul>

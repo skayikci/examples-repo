@@ -1,0 +1,16 @@
+<label > Director:
+  <input type="text" value="{{movieToEdit.director}}">
+</label>
+<label> ImageUrl:
+  <input type="text" value="{{movieToEdit.imageUrl}}">
+</label>
+<label> Producer:
+  <input type="text" value="{{movieToEdit.producer}}">
+</label>
+<label> Release Year:
+  <input type="text" value="{{movieToEdit.releaseYear}}">
+</label>
+<label> Name:
+  <input type="text" value="{{movieToEdit.name}}">
+</label>
+<mat-button class="btn-primary" ngbButton (click)="save(movieToEdit)">Save</mat-button>
