@@ -16,11 +16,12 @@ public class DataUtil implements CommandLineRunner {
         movieRepository.deleteAll();
 
 
-        Movie movie = new Movie();
-        movie.setDirector("Steven Spielberg");
-        movie.setName("Jurassic Park");
-        movie.setProducer("Warner Bros");
-        movie.setReleaseYear("1993");
+        Movie movie = Movie.builder()
+                .director("Steven Spielberg")
+                .name("Jurassic Park")
+                .producer("Warner Bros")
+                .releaseYear("1993")
+                .build();
 
 
 

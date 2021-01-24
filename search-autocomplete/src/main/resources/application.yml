@@ -1,0 +1,6 @@
+server:
+  port: 8089
+
+elasticsearch:
+  host: localhost
+  port: 9091
