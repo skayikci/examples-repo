@@ -1,6 +1,6 @@
 package com.example.searchautocomplete.search.service;
 
-import com.example.searchautocomplete.search.model.Movies;
+import com.example.searchautocomplete.search.model.Movie;
 import com.example.searchautocomplete.search.model.SearchResult;
 import com.example.searchautocomplete.search.repository.AutocompleteRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class AutocompleteService {
                 .map(this::mapTo);
     }
 
-    private SearchResult mapTo(Movies allByTitle) {
+    private SearchResult mapTo(Movie allByTitle) {
         return SearchResult.builder()
                 .publishDate(allByTitle.getReleaseDate())
                 .title(allByTitle.getTitle())

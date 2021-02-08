@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
  */
 @Data
 @Document(indexName = "tmdb")
-public class Movies {
+public class Movie {
     @Id private String id;
     private String title;
     private String posterPath;
