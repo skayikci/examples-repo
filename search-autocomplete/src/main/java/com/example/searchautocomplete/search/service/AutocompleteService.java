@@ -13,6 +13,7 @@ import reactor.core.publisher.Flux;
 public class AutocompleteService {
     private final AutocompleteRepository autocompleteRepository;
 
+    //fixme check for null dates!
     public Flux<SearchResult> autoCompleteSearch(String term) {
         //todo : add total result counts to the result
         return autocompleteRepository
