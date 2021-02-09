@@ -2,6 +2,7 @@ package com.example.searchautocomplete.search.controller;
 
 import com.example.searchautocomplete.search.model.SearchResult;
 import com.example.searchautocomplete.search.service.AutocompleteService;
+import java.util.Date;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ class AutocompleteControllerTest {
                         Flux.just(SearchResult
                                 .builder()
                                 .title("title")
-                                .publishDate("2020-10-20")
+                                .publishDate(new Date("2020-10-20"))
                                 .build())
                 );
 
