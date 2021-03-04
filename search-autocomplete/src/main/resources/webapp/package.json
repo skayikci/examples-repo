@@ -1,0 +1,8 @@
+{
+  "name": "autocomplete",
+  "version": "1.0.0",
+  "description": "autocomplete",
+  "main": "index.js",
+  "author": "sk",
+  "license": "MIT"
+}
