@@ -1,0 +1,12 @@
+<div class="result">
+  {{query}}
+  <ul *ngFor="let item of searchResult">
+    <li>{{item.name}}</li>
+    <li>{{item.description}}</li>
+  </ul>
+
+  <ul *ngFor="let item of searchResultFromServer | async">
+    <li>{{item.title}}</li>
+  </ul>
+</div>
+
