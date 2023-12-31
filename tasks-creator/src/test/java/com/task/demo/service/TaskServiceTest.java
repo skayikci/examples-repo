@@ -1,8 +1,11 @@
 package com.task.demo.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,5 +40,20 @@ class TaskServiceTest {
         assertEquals(createdTask.getDescription(), requestedTask.getDescription());
         assertEquals(createdTask.getName(), requestedTask.getName());
  
+    }
+
+    @Test
+    void shouldGetAllTasks() {
+        var listOfTasks = List.of(
+            new Task("task-id-1", "name-1", "description-1", false),
+            new Task("task-id-2", "name-2", "description-2", false)
+        );
+        when(taskRepository.findAll()).thenReturn(listOfTasks);
+
+        var returnedTasks = taskService.getTasks();
+
+        assertEquals(2, returnedTasks.size());
+        assertTrue(returnedTasks.containsAll(listOfTasks));
+        
     }
 }
