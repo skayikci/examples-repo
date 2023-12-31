@@ -1,5 +1,7 @@
 package com.task.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.task.demo.controller.TaskRequest;
@@ -20,6 +22,10 @@ public class TaskService {
         taskEntity.setDone(task.getDone());
         var createdEntity = taskRepository.save(taskEntity);
         return createdEntity;
+    }
+
+    public List<Task> getTasks() {
+        return taskRepository.findAll();
     }
 
 }
