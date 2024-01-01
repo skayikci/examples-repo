@@ -1,6 +1,7 @@
 package com.task.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class TaskService {
 
     public List<Task> getTasks() {
         return taskRepository.findAll();
+    }
+
+    public Optional<Task> getTask(String id) {
+        return taskRepository.findById(id);
     }
 
 }
