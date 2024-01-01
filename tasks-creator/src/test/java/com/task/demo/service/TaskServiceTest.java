@@ -76,7 +76,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void shouldGetNullObjectOnEmptyResultAndWarnInTheLogs() {
+    void shouldGetNullObjectOnEmptyResult() {
         when(taskRepository.findById(anyString())).thenReturn(Optional.empty());
 
         var returnedTask = taskService.getTask("any-id");
