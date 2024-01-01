@@ -83,4 +83,19 @@ class TaskServiceTest {
 
         assertTrue(returnedTask.isEmpty());
     }
+
+    @Test
+    void shouldUpdateSingleTaskWithId() {
+        var taskId = "task-id-1";
+        var task = new Task(taskId, "name-1", "description-1", false);
+        var updatedTask = new Task(taskId, "name-2", "description-2", true);
+        when(taskRepository.save(task)).thenReturn(updatedTask);
+
+        var returnedTask = taskService.updateSingleTask(task);
+
+        assertEquals(taskId, returnedTask.getId());
+        assertEquals("description-2", returnedTask.getDescription());
+        assertEquals("name-2", returnedTask.getName());
+        assertEquals(Boolean.TRUE, returnedTask.getDone());
+    }
 }

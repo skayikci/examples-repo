@@ -1,6 +1,8 @@
 package com.task.demo.controller;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +16,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -48,6 +51,25 @@ public class TasksController {
         }
     }
     
+    @PutMapping("/{id}")
+    public Task updateSingleTask(@PathVariable String id, @RequestBody Task request) {
+        if(request.getId().isBlank())
+        {
+            log.warn("Task id is mandatory.");
+            return null;
+        }
+        if(!Objects.equals(id, request.getId()))
+        {
+            log.warn("Invalid task ids are provided. Please check your inputs");
+            return null;
+        }
+        if(taskService.getTask(id).isEmpty()) {
+            log.warn("Task for given id couldn't be found.");
+            return null;
+        }
+
+        return taskService.updateSingleTask(request);
+    }
     
     
 }

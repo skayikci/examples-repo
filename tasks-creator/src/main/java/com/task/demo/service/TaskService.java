@@ -33,4 +33,8 @@ public class TaskService {
         return taskRepository.findById(id);
     }
 
+    public Task updateSingleTask(Task request) {
+        return taskRepository.save(request);
+    }
+
 }
