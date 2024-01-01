@@ -3,9 +3,11 @@ package com.task.demo.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +20,7 @@ import com.task.demo.repository.TaskRepository;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceTest {
+
     @Mock
     private TaskRepository taskRepository;
     @InjectMocks
@@ -55,5 +58,29 @@ class TaskServiceTest {
         assertEquals(2, returnedTasks.size());
         assertTrue(returnedTasks.containsAll(listOfTasks));
         
+    }
+
+    @Test
+    void shouldGetASingleTaskById() {
+        var taskId = "task-id-1";
+        var task = new Task(taskId, "name-1", "description-1", false);
+        when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
+
+        var returnedTask = taskService.getTask(taskId);
+
+        assertTrue(returnedTask.isPresent());
+        assertEquals(taskId, returnedTask.get().getId());
+        assertEquals(task.getDescription(), returnedTask.get().getDescription());
+        assertEquals(task.getName(), returnedTask.get().getName());
+        assertEquals(task.getDone(), returnedTask.get().getDone());
+    }
+
+    @Test
+    void shouldGetNullObjectOnEmptyResultAndWarnInTheLogs() {
+        when(taskRepository.findById(anyString())).thenReturn(Optional.empty());
+
+        var returnedTask = taskService.getTask("any-id");
+
+        assertTrue(returnedTask.isEmpty());
     }
 }
